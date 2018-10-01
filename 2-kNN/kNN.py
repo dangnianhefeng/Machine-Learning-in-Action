@@ -67,7 +67,7 @@ def datingTest():
     datingData, datingLabels = file2matrix("datingTestSet2.txt") #加载数据集
     normMat, ranges, minValues = autoNorm(datingData) #归一化
     m = normMat.shape[0] #数据个数
-    numTest = int(m*0.1) #测试数据集个数
+    numTest = int(m*testRatio) #测试数据集个数
 
     #前numTest 条数据为测试数据，后面为训练数据
     errorCount = 0.00 #错误预测的样本个数
@@ -76,7 +76,7 @@ def datingTest():
         print("pred-label:",classifierResult,"----real-label:",datingLabels[i])
         if classifierResult != datingLabels[i]:
             errorCount += 1.0
-    print("error rate:",errorCount/float(m))
+    print("error rate:",errorCount/float(numTest))
 
 ##约会网站预测函数
 def classifyPerson():
